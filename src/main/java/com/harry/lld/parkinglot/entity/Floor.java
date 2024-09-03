@@ -31,6 +31,7 @@ public class Floor {
     public List<Spot> getAvailability(final VehicleType vehicleType) {
        return spots.stream()
                .filter(spot -> spot.getVehicleType().equals(vehicleType))
+               .filter(spot -> !spot.isOccupied())
                .collect(Collectors.toList());
     }
 }
