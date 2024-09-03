@@ -1,0 +1,13 @@
+
+
+Parking Lot :
+  has Floors
+    has Spots
+
+Spot can be of different types (based on vehicleType)
+
+Each floor can have Different types of parking spot with different number
+
+
+FloorConfig
+    Map<VehicleType,
