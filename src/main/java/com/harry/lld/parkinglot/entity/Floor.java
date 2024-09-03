@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @ToString
@@ -24,5 +25,12 @@ public class Floor {
     private void createSpot(final VehicleType vehicleType, final int count) {
         IntStream.range(0, count)
                 .forEach(times -> spots.add(SpotFactory.createSpot(vehicleType)));
+    }
+
+
+    public List<Spot> getAvailability(final VehicleType vehicleType) {
+       return spots.stream()
+               .filter(spot -> spot.getVehicleType().equals(vehicleType))
+               .collect(Collectors.toList());
     }
 }

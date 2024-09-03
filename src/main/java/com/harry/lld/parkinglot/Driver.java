@@ -3,6 +3,7 @@ package com.harry.lld.parkinglot;
 import com.harry.lld.parkinglot.config.FloorConfig;
 import com.harry.lld.parkinglot.config.LotConfig;
 import com.harry.lld.parkinglot.entity.ParkingLot;
+import com.harry.lld.parkinglot.entity.spot.Spot;
 import com.harry.lld.parkinglot.enums.VehicleType;
 import com.harry.lld.parkinglot.service.ParkingService;
 
@@ -11,7 +12,6 @@ import java.util.Map;
 
 public class Driver {
     public static void main(String[] args) {
-        ParkingService service = new ParkingService();
 
         FloorConfig floor1 = new FloorConfig();
         floor1.setSpotCounts(Map.of(VehicleType.CAR, 2));
@@ -22,8 +22,14 @@ public class Driver {
         LotConfig lotConfig = new LotConfig();
         lotConfig.setFloorConfigs(List.of(floor1, floor2));
 
-        ParkingLot lot = service.createParkingLot(lotConfig);
-        System.out.println(lot);
+        ParkingService service = new ParkingService(lotConfig);
+
+        /**
+         * Get available spots for particular vehicleType
+         */
+        List<Spot> availableSpots = service.getAvailableSpots(VehicleType.CAR);
+        System.out.println(availableSpots);
+        System.out.println(availableSpots.size());
 
     }
 }
